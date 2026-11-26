@@ -30,10 +30,11 @@ For local viewing, put the Mac and iPhone or iPad on the same Wi-Fi and tap the 
 
 For a different Wi-Fi network or mobile data, Relay uses an HTTPS WebSocket relay. Both devices make outbound connections. The relay forwards the original TLS connection between the devices and sees encrypted payloads. It never receives the Mac's TLS private key or a viewer’s pairing key.
 
-1. Deploy the Cloudflare Worker in [Server](Server/README.md).
-2. On the Mac, enter the deployed HTTPS URL in **Relay → Settings → Internet Relay** and start sharing.
-3. Open the paired Mac once while both devices are on the same Wi-Fi. Relay learns the internet connection details during that authenticated session. No new pairing code is needed.
-4. On another network, open that same Mac in Relay. Keep the Mac awake, unlocked, and sharing.
+1. Install Relay 1.2.1 or newer on the Mac and click **Start Sharing**. The Mac release includes a default internet relay address. On an earlier build, use **Relay → Settings → Internet Relay** to enter `https://relay-screen.relay-mustafas22.workers.dev`.
+2. Open the paired Mac once while both devices are on the same Wi-Fi. Relay learns the internet connection details during that authenticated session. Use Relay 1.2 or newer on the iPhone or iPad. Existing pairing carries over.
+3. On another network, open that same Mac in Relay. Keep the Mac awake, unlocked, and sharing.
+
+To run your own relay, deploy the Worker in [Server](Server/README.md) and change the server URL in Mac Settings.
 
 Relay approval is separate from macOS Screen Recording and iOS/iPadOS Local Network access. The operating system controls when it asks for those permissions.
 
@@ -68,6 +69,6 @@ Capture rates vary with on-screen activity. The viewer labels latency as an esti
 
 ## Scope and release status
 
-Relay supports one viewer at a time. Macs and MacBooks host streams. iPhones and iPads view them. Cross-network use needs a deployed internet relay. HEVC, audio, and remote input are outside this build.
+Relay supports one viewer at a time. Macs and MacBooks host streams. iPhones and iPads view them. Cross-network use needs the configured internet relay to be reachable. HEVC, audio, and remote input are outside this build.
 
 See [development and physical-device validation](Documentation/Validation.md) for the verified checks and remaining release gate.
