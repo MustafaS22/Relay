@@ -9,7 +9,7 @@
 - [x] Phase 5 — iPhone viewer, display and quality selection, zoom and pan
 - [x] Phase 6 — Reconnection, backpressure, adaptive quality and trust management implementation
 - [x] Phase 7 — Native interfaces, app icons, menu bar and launch-at-login implementation
-- [x] Phase 8 — Internet relay transport for paired viewers. Hosted and physical acceptance are pending.
+- [x] Phase 8 — Internet relay transport for paired viewers. Hosted transport passed. Physical streaming acceptance is pending.
 
 ## Verified
 
@@ -21,6 +21,12 @@
 - Twelve tests passed, including local-to-saved-address route selection, address validation, and compatibility with the existing authorization message.
 - The signed Mac DMG verified with arm64 and x86_64 slices. The signed IPA verified with iPhone and iPad device families and a provisioning profile for the registered iPhone 16.
 - Physical iPad installation requires signing with a provisioning profile that includes that iPad.
+
+## Hosted relay checks
+
+- Cloudflare deployment responded to `GET /health` over public HTTPS.
+- The native Swift bridges negotiated Relay's pinned TLS through the live WebSocket Worker and exchanged a framed request and reply. This exercised the transport without capturing a display.
+- The universal macOS 1.2.1 DMG verified with the relay URL preconfigured. The existing 1.2 mobile IPA supports that URL through its paired connection.
 
 ## Physical Mac, iPhone, and iPad
 
